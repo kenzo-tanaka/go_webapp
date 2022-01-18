@@ -3,5 +3,5 @@
 ```shell
 # chat app
 cd chat
-go run main.go
+go build -o chat
 ```
