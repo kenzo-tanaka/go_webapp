@@ -14,6 +14,16 @@ type room struct {
 	clients map[*client]bool
 }
 
+// roomのファクトリメソッド
+func newRoom() *room {
+	return &room{
+		forward: make(chan []byte),
+		join:    make(chan *client),
+		leave:   make(chan *client),
+		clients: make(map[*client]bool),
+	}
+}
+
 func (r *room) run() {
 	// goroutineでバックグラウンドで実行される無限ループ
 	// アプリケーション内の他の処理をブロックすることはない
