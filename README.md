@@ -4,4 +4,5 @@
 # chat app
 cd chat
 go build -o chat
+./chat -addr=":3000"
 ```
