@@ -12,7 +12,7 @@ func TestNew(t *testing.T) {
 		t.Error("Newからの戻り値がnil")
 	} else {
 		tracer.Trace("こんにちは")
-		if buf.String() != "こんにちは" {
+		if buf.String() != "こんにちは\n" {
 			t.Errorf("'%s' is not expected", buf.String())
 		}
 	}
