@@ -16,6 +16,4 @@ func TestNew(t *testing.T) {
 			t.Errorf("%s is not expected", buf.String())
 		}
 	}
-
-	t.Error("まだテストしていない")
 }
