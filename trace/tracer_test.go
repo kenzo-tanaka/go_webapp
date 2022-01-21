@@ -13,7 +13,7 @@ func TestNew(t *testing.T) {
 	} else {
 		tracer.Trace("こんにちは")
 		if buf.String() != "こんにちは" {
-			t.Errorf("%s is not expected", buf.String())
+			t.Errorf("'%s' is not expected", buf.String())
 		}
 	}
 }
