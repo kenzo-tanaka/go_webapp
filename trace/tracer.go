@@ -15,6 +15,8 @@ func New(w io.Writer) Tracer {
 	return &tracer{out: w}
 }
 
+// Goにおけるインターフェースは明示的にimplementsと書く必要がない
+// interfaceが要求するメソッドを実装しておくことで、interfaceを実装していることになる
 type tracer struct {
 	out io.Writer
 }
