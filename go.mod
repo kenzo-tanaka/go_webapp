@@ -6,6 +6,7 @@ require github.com/stretchr/gomniauth v0.0.0-20170717123514-4b6c822be2eb
 
 require (
 	github.com/gorilla/websocket v1.4.2 // indirect
+	github.com/joho/godotenv v1.4.0 // indirect
 	github.com/stretchr/codecs v0.0.0-20170403063245-04a5b1e1910d // indirect
 	github.com/stretchr/objx v0.3.0 // indirect
 	github.com/stretchr/signature v0.0.0-20160104132143-168b2a1e1b56 // indirect
