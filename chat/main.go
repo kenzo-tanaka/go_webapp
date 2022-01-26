@@ -10,6 +10,8 @@ import (
 	"sync"
 
 	"github.com/kenzo-takana/go_webapp/trace"
+	"github.com/stretchr/gomniauth"
+	"github.com/stretchr/gomniauth/providers/google"
 )
 
 type templateHandler struct {
@@ -28,6 +30,12 @@ func (t *templateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func main() {
 	var addr = flag.String("addr", ":8080", "application address")
 	flag.Parse()
+
+	// TODO: .env管理
+	gomniauth.SetSecurityKey("key")
+	gomniauth.WithProviders(
+		google.New("client id", "secret key", "http://localhost:8080/auth/callback/google"),
+	)
 
 	r := newRoom()
 	r.tracer = trace.New(os.Stdout)
