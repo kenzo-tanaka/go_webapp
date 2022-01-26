@@ -29,6 +29,8 @@ func MustAuth(handler http.Handler) http.Handler {
 	return &authHandler{next: handler}
 }
 
+// 他のハンドラと異なり内部状態を保持する必要がない
+// http.HandleFuncを使うと、http.Handleと同様にパスの関連付けができる
 func loginHandler(w http.ResponseWriter, r *http.Request) {
 	segs := strings.Split(r.URL.Path, "/")
 	action := segs[2]
