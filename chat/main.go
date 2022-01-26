@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 	"sync"
 
+	"github.com/joho/godotenv"
 	"github.com/kenzo-takana/go_webapp/trace"
 	"github.com/stretchr/gomniauth"
 	"github.com/stretchr/gomniauth/providers/google"
@@ -31,10 +32,16 @@ func main() {
 	var addr = flag.String("addr", ":8080", "application address")
 	flag.Parse()
 
-	// TODO: .env管理
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatal("dot env error.")
+	}
+
+	client_id := os.Getenv("GOOGLE_CLIENT_ID")
+	secret_key := os.Getenv("GOOGLE_SECRET_KEY")
 	gomniauth.SetSecurityKey("key")
 	gomniauth.WithProviders(
-		google.New("client id", "secret key", "http://localhost:8080/auth/callback/google"),
+		google.New(client_id, secret_key, "http://localhost:8080/auth/callback/google"),
 	)
 
 	r := newRoom()
