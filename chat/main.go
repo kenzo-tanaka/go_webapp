@@ -32,9 +32,9 @@ func main() {
 	var addr = flag.String("addr", ":8080", "application address")
 	flag.Parse()
 
-	err := godotenv.Load(".env")
+	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("dot env error.")
+		log.Fatal("dot env error.", err)
 	}
 
 	client_id := os.Getenv("GOOGLE_CLIENT_ID")
