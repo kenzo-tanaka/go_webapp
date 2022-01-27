@@ -39,7 +39,7 @@ func main() {
 
 	client_id := os.Getenv("GOOGLE_CLIENT_ID")
 	secret_key := os.Getenv("GOOGLE_SECRET_KEY")
-	gomniauth.SetSecurityKey("key")
+	gomniauth.SetSecurityKey(os.Getenv("SECURITY_KEY"))
 	gomniauth.WithProviders(
 		google.New(client_id, secret_key, "http://localhost:8080/auth/callback/google"),
 	)
