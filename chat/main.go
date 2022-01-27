@@ -13,6 +13,7 @@ import (
 	"github.com/kenzo-takana/go_webapp/trace"
 	"github.com/stretchr/gomniauth"
 	"github.com/stretchr/gomniauth/providers/google"
+	"github.com/stretchr/objx"
 )
 
 type templateHandler struct {
@@ -25,6 +26,16 @@ func (t *templateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	t.once.Do(func() {
 		t.templ = template.Must(template.ParseFiles(filepath.Join("templates", t.filename)))
 	})
+
+	// mapの型宣言に続いて波括弧を記述すると
+	// マップの生成と同時に値のセットが行われる
+	data := map[string]interface{}{
+		"Host": r.Host,
+	}
+	if authCookie, err := r.Cookie("auth"); err == nil {
+		data["UserData"] = objx.MustFromBase64(authCookie.Value)
+	}
+
 	t.templ.Execute(w, r)
 }
 
