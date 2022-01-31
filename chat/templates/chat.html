@@ -9,8 +9,6 @@
   <body>
     Let's chat!
     <ul id="messages"></ul>
-    <!-- TODO: nameを表示、以下を実装するとFormが表示されなくなってしまう -->
-    <!-- <p>{{ .UserData.name }}</p> -->
     <form action="" id="chatbox">
       <textarea name="" id="" cols="30" rows="10"></textarea>
       <input type="submit" value="Submit">
@@ -39,7 +37,8 @@
         } else {
           socket = new WebSocket("ws://{{ .Host }}/room");
           socket.onclose = function() {
-            alert('close')
+            // 都度alertを閉じるの面倒なのでコメントアウト
+            // alert('close')
           }
           socket.onmessage = function(e) {
             messages.append($("<li>").text(e.data));
