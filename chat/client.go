@@ -8,9 +8,10 @@ import (
 
 // clientはチャットを行っている1人のユーザー
 type client struct {
-	socket *websocket.Conn // clientのためのWebsocket
-	send   chan []byte     // sendはメッセージが送られるためのチャネル
-	room   *room           // clientが参加しているチャットルーム
+	socket   *websocket.Conn // clientのためのWebsocket
+	send     chan []byte     // sendはメッセージが送られるためのチャネル
+	room     *room           // clientが参加しているチャットルーム
+	userData map[string]interface{}
 }
 
 func (c *client) read() {
