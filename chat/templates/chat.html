@@ -9,7 +9,9 @@
   <body>
     Let's chat!
     <ul id="messages"></ul>
+    <!-- TODO: nameを表示、以下を実装するとFormが表示されなくなってしまう -->
     <form action="" id="chatbox">
+      {{.UserData.name}}
       <textarea name="" id="" cols="30" rows="10"></textarea>
       <input type="submit" value="Submit">
     </form>

@@ -9,7 +9,7 @@ import (
 )
 
 type room struct {
-	forward chan []byte
+	forward chan *message
 	join    chan *client
 	leave   chan *client
 	clients map[*client]bool
@@ -19,7 +19,7 @@ type room struct {
 // roomのファクトリメソッド
 func newRoom() *room {
 	return &room{
-		forward: make(chan []byte),
+		forward: make(chan *message),
 		join:    make(chan *client),
 		leave:   make(chan *client),
 		clients: make(map[*client]bool),
@@ -74,7 +74,7 @@ func (r *room) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 
 	client := &client{
 		socket: socket,
-		send:   make(chan []byte, messageBufferSize),
+		send:   make(chan *message, messageBufferSize),
 		room:   r,
 	}
 

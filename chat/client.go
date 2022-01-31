@@ -9,7 +9,7 @@ import (
 // clientはチャットを行っている1人のユーザー
 type client struct {
 	socket   *websocket.Conn // clientのためのWebsocket
-	send     chan []byte     // sendはメッセージが送られるためのチャネル
+	send     chan *message   // sendはメッセージが送られるためのチャネル
 	room     *room           // clientが参加しているチャットルーム
 	userData map[string]interface{}
 }
@@ -30,7 +30,7 @@ func (c *client) read() {
 
 func (c *client) write() {
 	for msg := range c.send {
-		if err := c.socket.WriteMessage(websocket.TextMessage, msg); err != nil {
+		if err := c.socket.WriteJSON(msg); err != nil {
 			break
 		}
 	}
